@@ -27,7 +27,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="fas fa-users mr-1"></i>
-                  Users
+                  Home
               </h3>
             <div class="card-tools">
               <ul class="nav nav-pills ml-auto">
@@ -44,8 +44,7 @@
           <table id="example1" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>Nama User</th>
-                <th>Email</th>
+                <th>Nama Kategori</th>
                 <th>Edit</th>
                 <th>DELETE</th>
               </tr>
@@ -54,24 +53,23 @@
             <?php $i = 1;?>
                 @foreach ($data_user as $d)
                   <tr>
-                    <td>{{ $d->name }}</td>
-                    <td>{{ $d->email }}</td>
+                    <td>{{ $d->nama }}</td>
                     <td align="center"><button type="button" class="btn btn-sm bg-warning" data-toggle="modal" data-target="#exampleModalss{{$i}}"><i class="fas fa-edit"></i></button></td>
                     <td align="center"><button type="button" class="btn btn-sm bg-danger" data-toggle="modal" data-target="#exampleModals{{$i}}"><i class="fas fa-trash"></i></button></td>
                     </tr>
                    <div class="modal fade" id="exampleModals{{$i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
-                        <form method="post" action="{{route('delete_user')}}">
+                        <form method="post" action="{{route('delete_kategori')}}">
                         @csrf
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data Kategori</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                           </div>
                           <div class="modal-body">
-                            Apakah anda yakin ingin menghapus data {{$d->name}}?
+                            Apakah anda yakin ingin menghapus data {{$d->nama}}?
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -85,34 +83,24 @@
                     
                     <div class="modal fade" id="exampleModalss{{$i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
-                      <form method="post" action="{{route('edit_user')}}">
+                      <form method="post" action="{{route('edit_kategori')}}">
                       @csrf
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">EDIT Data User</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">EDIT Data Kategori</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                        <div class="modal-body">
-                          <div class="form-group row" style="margin-left:-120px;">
-                            <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Nama User</label>
-                            <div class="col-sm-6">
-                              <input type="text" name="name" class="form-control" placeholder="Full name" value="{{$d->name}}"  required>
+                            <div class="modal-body">
+                              <div class="form-group row" style="margin-left:-120px;">
+                                <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Nama Kategori</label>
+                                <div class="col-sm-6">
+                                  <input type="text" name="nama" class="form-control" placeholder=""  value="{{$d->nama}}" required>
+                                </div>
+                              </div>   
+                              
                             </div>
-                          </div>  
-                          <div class="form-group row" style="margin-left:-120px;">
-                            <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Email</label>
-                            <div class="col-sm-6">
-                              <input type="email" name="email" class="form-control" placeholder="Email" value="{{$d->email}}" required>
-                            </div>
-                          </div>  
-                          <div class="form-group row" style="margin-left:-120px;">
-                            <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Password</label>
-                            <div class="col-sm-6">
-                              <input type="password" name="password" class="form-control" placeholder="Password"  required> 
-                            </div>
-                          </div> 
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           <input type="text" value="{{ $d->id }}" name="del"style="display:none">
@@ -127,12 +115,11 @@
 
                   </tbody>
                   <tfoot>
-                  <tr>
-                    <th>Nama User</th>
-                    <th>Email</th>
-                    <th>Edit</th>
-                    <th>DELETE</th>
-                  </tr>
+                    <tr>
+                      <th>Nama Kategori</th>
+                      <th>Edit</th>
+                      <th>DELETE</th>
+                    </tr>
                   </tfoot>
                 </table>
           </div>
@@ -146,11 +133,11 @@
   <!-- /.content-wrapper -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-  <form method="post" action="{{ route('add_user') }}">
+  <form method="post" action="{{ route('add_kategori') }}">
   @csrf
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data User</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Kategori</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -158,23 +145,11 @@
       
       <div class="modal-body">
         <div class="form-group row" style="margin-left:-120px;">
-          <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Nama User</label>
+          <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Nama Kategori</label>
           <div class="col-sm-6">
-            <input type="text" name="name" class="form-control" placeholder="" required>
+            <input type="text" name="nama" class="form-control" placeholder="" required>
           </div>
-        </div>  
-        <div class="form-group row" style="margin-left:-120px;">
-          <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Email</label>
-          <div class="col-sm-6">
-            <input type="email" name="email" class="form-control" placeholder="" required>
-          </div>
-        </div>  
-        <div class="form-group row" style="margin-left:-120px;">
-          <label class="col-sm-2 col-form-label" style="margin-left: 150px;">Password</label>
-          <div class="col-sm-6">
-            <input type="password" name="password" class="form-control" placeholder="" required> 
-          </div>
-        </div>  
+        </div>   
         
       </div>
       
